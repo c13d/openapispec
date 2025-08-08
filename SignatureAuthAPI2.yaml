@@ -1,0 +1,24 @@
+swagger: "2.0"
+info:
+  title: Signature Auth API
+  version: 1.0.0
+paths:
+  /v1.0/utilities/signature-auth:
+    get:
+      summary: Signature Auth Endpoint
+      parameters:
+        - name: X-CLIENT-KEY
+          in: header
+          required: true
+          type: string
+          maxLength: 32
+          description: Client key with max length 32
+        - name: X-TIMESTAMP
+          in: header
+          required: true
+          type: string
+          pattern: '^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{4}$'
+          description: Timestamp in format YYYY-MM-DDTHH:MM:SS+ZZZZ (e.g. 2025-08-08T15:06:35+0700)
+      responses:
+        200:
+          description: Successful response
